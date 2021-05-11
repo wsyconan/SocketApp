@@ -9,4 +9,12 @@ public class RawImage implements Serializable {
         super();
         this.file = file;
     }
+
+    public byte[] getFile(){
+        return file;
+    }
+
+    public void setFile(byte[] file) {
+        this.file = file;
+    }
 }
