@@ -4,13 +4,16 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
+import org.slf4j.Logger;
 
+import org.slf4j.LoggerFactory;
 import wsyconan.image.Image;
 
 public class Handler implements Runnable {
     InputStream inputStream;
     OutputStream outputStream;
     final Path storage = Path.of("storage");
+    Logger logger = LoggerFactory.getLogger(Handler.class);
 
     public Handler(InputStream inputStream, OutputStream outputStream) {
         super();
@@ -34,9 +37,9 @@ public class Handler implements Runnable {
 
                 Thread.sleep(10000);
             }
-            System.out.println(Thread.currentThread().getName() + "sent an Image.");
+            logger.info(Thread.currentThread().getName() + "got an Image.");
         } catch (ClassNotFoundException | IOException | InterruptedException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage());
         }
     }
 
